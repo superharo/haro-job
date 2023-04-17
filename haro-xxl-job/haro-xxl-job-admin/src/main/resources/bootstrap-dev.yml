@@ -1,0 +1,52 @@
+server:
+  port: 8080
+#nacos
+nacos:
+  url: 10.0.0.8:8848
+spring:
+  #database
+  datasource:
+    url: jdbc:mysql://10.0.0.8:3306/xxl_job?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #pool
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 30
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: HikariCP
+      max-lifetime: 900000
+      connection-timeout: 10000
+      connection-test-query: SELECT 1
+      validation-timeout: 1000
+  #mail
+  mail:
+    host: localhost
+    port:
+    username:
+    from:
+    password:
+    properties:
+      mail:
+        stmp:
+          auth: true
+          starttls:
+            enabled: true
+            required: true
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+#xxl-job
+xxl:
+  job:
+    accessToken: default_token
+    i18n: zh_CN
+    triggerpool:
+      fast:
+        max: 200
+      slow:
+        max: 100
+    logretentiondays: 30
+

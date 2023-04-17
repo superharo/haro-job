@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: haro-xxl-job-executor
+  profiles: #启用开发配置
+    active: dev
+  cloud:
+    nacos:
+      discovery: #注册中心
+        server-addr: ${nacos.url}
+      config: #配置中心
+        server-addr: ${nacos.url}
+        #文件拓展名，默认properties
+        file-extension: yaml

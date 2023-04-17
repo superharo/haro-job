@@ -1,0 +1,101 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>online.superh</groupId>
+  <artifactId>haro-job</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>haro-job</name>
+  <description>任务中心</description>
+
+  <modules>
+    <module>haro-xxl-job</module>
+  </modules>
+
+  <properties>
+    <!-- 项目构建 相关 -->
+    <java.version>1.8</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- spring -->
+    <spring-boot.version>2.6.11</spring-boot.version>
+    <spring-cloud-alibaba.version>2021.0.4.0</spring-cloud-alibaba.version>
+    <spring-cloud.version>2021.0.4</spring-cloud.version>
+    <!-- 工具类 -->
+    <lombok.version>1.18.24</lombok.version>
+    <hutool.version>5.8.9</hutool.version>
+  </properties>
+
+<dependencyManagement>
+  <dependencies>
+    <!-- 统一依赖管理 -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-dependencies</artifactId>
+      <version>${spring-boot.version}</version>
+      <type>pom</type>
+      <scope>import</scope>
+    </dependency>
+
+    <!-- SpringCloud-->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-dependencies</artifactId>
+      <version>${spring-cloud.version}</version>
+      <type>pom</type>
+      <scope>import</scope>
+    </dependency>
+
+    <!-- Alibaba -->
+    <dependency>
+      <groupId>com.alibaba.cloud</groupId>
+      <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+      <version>${spring-cloud-alibaba.version}</version>
+      <type>pom</type>
+      <scope>import</scope>
+    </dependency>
+
+    <!--  tools  -->
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-all</artifactId>
+      <version>${hutool.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
+</dependencyManagement>
+
+  <build>
+    <!-- 插件管理 初始化配置-->
+    <pluginManagement>
+      <plugins>
+        <!-- maven-surefire-plugin 插件，用于运行单元测试。 -->
+        <!-- 注意，需要使用 3.0.X+，因为要支持 Junit 5 版本 -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${maven-surefire-plugin.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <!-- 使用 aliyun 的 Maven 源，提升下载速度 -->
+  <repositories>
+    <repository>
+      <id>aliyunmaven</id>
+      <name>aliyun</name>
+      <url>https://maven.aliyun.com/repository/public</url>
+    </repository>
+  </repositories>
+
+</project>
