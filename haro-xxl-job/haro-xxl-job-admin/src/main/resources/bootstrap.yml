@@ -7,6 +7,8 @@ spring:
   profiles: #启用开发配置
     active: dev
   mvc:
+    servlet:
+      load-on-startup: 0
     static-path-pattern: /static/**
   web:
     resources:
